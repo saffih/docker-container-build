@@ -1,0 +1,7 @@
+ibase:
+    image: saffi/docker-container-build
+ 
+base:
+   build: .
+ 
+
