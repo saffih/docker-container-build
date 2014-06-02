@@ -19,4 +19,4 @@ ADD code/etc /etc
 RUN chmod +x /etc/supervisor/*.sh
 
 ENTRYPOINT bash --verbose -s -i 
-CMD["-c /etc/supervisor/start.sh"]
+CMD ["-c", "/etc/supervisor/start.sh"]
