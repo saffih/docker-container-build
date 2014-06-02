@@ -18,5 +18,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -qq && \
 ADD code/etc /etc
 RUN chmod +x /etc/supervisor/*.sh
 
-ENTRYPOINT bash --verbose -s -i 
 CMD ["-c", "/etc/supervisor/start.sh"]
+ENTRYPOINT ["bash", "--verbose", "-i","-s"]
+
