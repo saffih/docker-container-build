@@ -8,16 +8,23 @@ ENV container docker
 #nameserver 8.8.8.4
 ADD code/etc/resolv.conf /etc/reslov.conf
 
-# build base supervisor with resolve.conf
-# append with apt-get clean for reducing image size in build.
-# descendent images would have ADD at end for faster build due to reuse. The current image must have that at start due to DNS.
-
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -qq && \
-    apt-get install -y build-essential git  supervisor && apt-get clean
+        apt-get install -y build-essential git  supervisor && apt-get clean
 
+RUN mkdir -p /root/build
+WORKDIR /root/build
+
+# the 3 lines are self contained, todo make the two Run commands. one.
+ADD code/build/buildssh.sh /root/build/
+RUN chmod +x buildssh.sh
+RUN ./buildssh.sh
+
+
+# keep changes last for fast build
 ADD code/etc /etc
 RUN chmod +x /etc/supervisor/*.sh
 
+EXPOSE 22
 CMD ["-c", "/etc/supervisor/start.sh"]
 ENTRYPOINT ["bash", "--verbose", "-i","-s"]
 
