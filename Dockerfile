@@ -23,8 +23,8 @@ RUN ./buildssh.sh
 # keep changes last for fast build
 ADD code/etc /etc
 RUN chmod +x /etc/supervisor/*.sh
-
-EXPOSE 22
+# expose if ssh needed - or in dev.
+#EXPOSE 22
 CMD ["-c", "/etc/supervisor/start.sh"]
 ENTRYPOINT ["bash", "--verbose", "-i","-s"]
 
