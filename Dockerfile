@@ -11,11 +11,11 @@ ADD code/etc/resolv.conf /etc/reslov.conf
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -qq && \
         apt-get install -y build-essential git  supervisor && apt-get clean
 
-RUN mkdir -p /root/build
-WORKDIR /root/build
+RUN mkdir -p /root/scripts
+WORKDIR /root/scripts
 
 # the 3 lines are self contained, todo make the two Run commands. one.
-ADD code/build/buildssh.sh /root/build/
+ADD code/scripts/buildssh.sh /root/scripts/
 RUN chmod +x buildssh.sh
 RUN ./buildssh.sh
 
