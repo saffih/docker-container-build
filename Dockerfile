@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM ubuntu:quantal
 
 MAINTAINER Saffi <saffi.h@gmail.com>
 ENV container docker
