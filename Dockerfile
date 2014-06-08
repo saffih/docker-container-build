@@ -8,8 +8,9 @@ ENV container docker
 #nameserver 8.8.8.4
 ADD code/etc/resolv.conf /etc/reslov.conf
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get update -qq && \
-        apt-get install -y build-essential git  supervisor && apt-get clean
+RUN DEBIAN_FRONTEND=noninteractive apt-get update -qq \
+  && apt-get install -y build-essential git supervisor \
+  && apt-get clean
 
 RUN mkdir -p /root/scripts
 WORKDIR /root/scripts
